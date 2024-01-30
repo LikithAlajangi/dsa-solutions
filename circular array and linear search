@@ -1,0 +1,67 @@
+1.  n people are sitting at a circular table with names A, B, C, D, … Given a name, we need to print all n people (in order) starting from the given name.  
+sol. 
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+char  a[] = {'a','b','c','d','e','f','g'};
+int n = sizeof(a);
+int s = 5;
+for(int i=s;i<s+n;i++){
+    cout << a[(i%n)] << " ";
+}
+	return 0;
+}
+
+2. kadane's algorithm
+int main() {
+vector<int> v;
+int in;
+while(cin>>in){
+    v.push_back(in);
+}
+
+int max=INT_MIN,sum=0;
+for(int i=0;i<v.size();i++){
+    sum = sum + v[i];
+    if(max<sum){
+        max = sum;
+    }
+    else if(sum<0){
+        sum =0;
+    }
+}
+
+cout << max << endl;
+}
+
+3. maximum subarray sum in circular array
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+vector<int> v;
+int in;
+while(cin>>in){
+    v.push_back(in);
+}
+int totsum =0;
+for(auto x:v){
+    totsum += x;
+}
+
+int maxv=v[0],sum_max=v[0],minv=v[0],sum_min=v[0];
+for(int i=1;i<v.size();i++){
+    sum_max = max(v[i],v[i]+sum_max);
+    maxv = max(sum_max,maxv);
+    
+    sum_min = min(v[i],v[i]+sum_min);
+    minv = min(sum_min,minv);
+}
+if(totsum == sum_min){
+    cout << maxv << endl;
+}
+
+cout << max(maxv,totsum- minv) << endl;
+}
+
