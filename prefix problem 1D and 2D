@@ -1,0 +1,46 @@
+1. prefix sum 1D array
+
+int main() {
+	vector<int> v,p;
+	int x;
+	while(cin>>x){
+	    v.push_back(x);
+	}
+	p.push_back(v[0]);
+	for(int i=1;i<v.size();i++){
+	    p.push_back(v[i]+p[i-1]);
+	}
+	
+	for(auto x:p){
+	    cout << x << " ";
+	}
+	return 0;
+}
+
+2. Given an array of n integers, find if any index exists such that the sum of elements to its right is equal to the sum of elements to its left. 
+If yes print the index, otherwise print “No Equilibrium”.
+
+
+int main() {
+	vector<int> v,p;
+	int x;
+	while(cin>>x){
+	    v.push_back(x);
+	}
+	p.push_back(v[0]);
+	for(int i=1;i<v.size();i++){
+	    p.push_back(v[i]+p[i-1]);
+	}
+	int cnt=1;
+  for(int i=1;i<v.size();i++){
+      if((p[i]-v[i])==p[v.size()-1]-p[i]){
+          cout << "EQUILIBRIUM at index: "<< i << endl;
+          cnt=0;
+      }
+  }
+  if(cnt){
+  cout << "NOT EQUILIBRIUM" << endl;
+  }
+	return 0;
+}
+
